@@ -1,11 +1,51 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load hitcount_tags %}
 
 {% block title %} {{ news.title }} {% endblock title %}
 
 {% block content %}
     <h2>{{ news.title }}</h2><br>
-    <h5>{{ news.publish_time }}</h5><br>
-    <img src="{{ news.image.url }}"><br><br>
+    <h5>
+        {{ news.publish_time }} | <i class="fa fa-eye " style="color: #255656;"></i> {% get_hit_count for news %} |
+        Izohlar soni {{ comments.count }}
+    </h5>
+    <img src="{{ news.image.url }}">
     <p>{{ news.body }}</p>
+
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+<div class="card-footer text-center">
+    <button class="btn btn-blue"><a href="{% url 'news_update' news.slug %}" style="color: whitesmoke">O'zgartirish</a></button>
+    <button class="btn btn-red"><a href="{% url 'news_delete' news.slug  %}" style="color: whitesmoke">O'chirish</a></button>
+</div>
+    {% endif %}<br>
+{% for comment in comments %}
+    <div class="comment" style="padding: 10px">
+    <p class="font-weight-bold">
+        {{ comment.user }}
+    <span class="text-muted font-weight-normal">
+        {{ comment.created_time }}
+    </span>
+    </p>
+    {{ comment.body | linebreaks}}
+    </div>
+{% endfor %}
+    {% if user.is_authenticated %}
+    <div class="col-md-8 card mb-4 mt-3">
+        <div class="card-body">
+            <h3>Izoh qoldirish</h3>
+            <form method="post" style="margin-top: 1.3em">{% csrf_token %}
+                {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary btn-lg"> Yuborish</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+        <div class="card-body">
+            <p class="text-danger">Faqatgina ro'yxatdan o'tgan foydalanuvchilargina izoh qoldirishi mumkin</p>
+            <p>Izoh qoldirish uchun <a href="{% url 'user_register' %}" style="color: deeppink">SignUp</a>
+                yoki <a href="{% url 'login' %}" style="color: deeppink">LogIn</a> qiling
+            </p>
+        </div>
+    {% endif %}
 {% endblock content %}

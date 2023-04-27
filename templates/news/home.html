@@ -1,5 +1,6 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load hitcount_tags %}
 
 {% block title %} Home Page {% endblock title %}
 {% block content %}
@@ -25,8 +26,12 @@
             <ul class="latest_postnav">
             {% for news in news_list %}
               <li>
-                <div class="media"> <a href="{{ news.get_absolute_url }}" class="media-left"> <img alt="" src="{{ news.image.url }}"> </a>
-                  <div class="media-body"> <a href="{{ news.get_absolute_url }}" class="catg_title">{{ news.title }}</a> </div>
+                <div class="media">
+                    <a href="{{ news.get_absolute_url }}" class="media-left"> <img alt="" src="{{ news.image.url }}"> </a>
+                    <div class="media-body">
+                        <a href="{{ news.get_absolute_url }}" class="catg_title">{{ news.title }}</a>
+                        <p>Ko'rilganlar soni: <i class="fa fa-eye " style="color: #255656;"></i> {% get_hit_count for news %}</p>
+                    </div>
                 </div>
               </li>
             {% endfor %}
@@ -50,7 +55,9 @@
                 <li>
                   <figure class="bsbig_fig"> <a href="{{ local.get_absolute_url }}" class="featured_img"> <img alt="" src="{{ local.image.url }}"> <span class="overlay"></span> </a>
                     <figcaption> <a href="{{ local.get_absolute_url }}">{{ local.title | truncatewords:5 }}</a> </figcaption>
-                    <p>{{ local.title }}</p>
+                    <p>{{ local.body | truncatewords:10 }}</p>
+                    <p>Ko'rilganlar soni: <i class="fa fa-eye " style="color: #255656;"></i> {% get_hit_count for local %}</p>
+                    <p>Izohlar soni: {{ local.comments.count }}</p>
                   </figure>
                 </li>
                 {% endif %}
@@ -62,8 +69,13 @@
               {% for mahalliy in mahalliy_xabarlar %}
                 {% if forloop.counter > 1 %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{{ mahalliy.get_absolute_url }}" class="media-left"> <img alt="" src="{{ mahalliy.image.url }}"> </a>
-                    <div class="media-body"> <a href="{{ mahalliy.get_absolute_url }}" class="catg_title"> {{ mahalliy.title }}</a> </div>
+                  <div class="media wow fadeInDown">
+                      <a href="{{ mahalliy.get_absolute_url }}" class="media-left"> <img alt="" src="{{ mahalliy.image.url }}"> </a>
+                      <div class="media-body">
+                          <a href="{{ mahalliy.get_absolute_url }}" class="catg_title"> {{ mahalliy.title }}</a>
+                          <p>Ko'rilganlar soni: <i class="fa fa-eye " style="color: #255656;"></i> {% get_hit_count for mahalliy %}</p>
+                           <p>Izohlar soni: {{ mahalliy.comments.count }}</p>
+                      </div>
                   </div>
                 </li>
                 {%  endif %}
@@ -82,6 +94,8 @@
                     <figure class="bsbig_fig"> <a href="{{ xorij.get_absolute_url }}" class="featured_img"> <img alt="" src="{{ xorij.image.url }}"> <span class="overlay"></span> </a>
                       <figcaption> <a href="{{ xorij.get_absolute_url }}">{{ xorij.title | truncatewords:5 }}</a> </figcaption>
                       <p>{{ xorij.body | truncatewords:10 }}</p>
+                      <p>Ko'rilganlar soni: <i class="fa fa-eye " style="color: #255656;"></i> {% get_hit_count for xorij %}</p>
+                       <p>Izohlar soni: {{ xorij.comments.count }}</p>
                     </figure>
                   </li>
                     {% endif %}
@@ -91,8 +105,13 @@
                   {% for xorij in xorij_xabarlar%}
                     {% if forloop.counter > 1 %}
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ xorij.get_absolute_url }}" class="media-left"> <img alt="" src="{{ xorij.image.url }}"> </a>
-                      <div class="media-body"> <a href="{{ xorij.get_absolute_url }}" class="catg_title"> {{ xorij.title }}</a> </div>
+                    <div class="media wow fadeInDown">
+                        <a href="{{ xorij.get_absolute_url }}" class="media-left"> <img alt="" src="{{ xorij.image.url }}"> </a>
+                      <div class="media-body">
+                          <a href="{{ xorij.get_absolute_url }}" class="catg_title"> {{ xorij.title }}</a>
+                          <p>Ko'rilganlar soni: <i class="fa fa-eye " style="color: #255656;"></i> {% get_hit_count for xorij %}</p>
+                           <p>Izohlar soni: {{ xorij.comments.count }}</p>
+                      </div>
                     </div>
                   </li>
                     {% endif %}
@@ -110,6 +129,8 @@
                     <figure class="bsbig_fig wow fadeInDown"> <a href="{{ texnologiya.get_absolute_url }}" class="featured_img"> <img alt="" src="{{ texnologiya.image.url }}"> <span class="overlay"></span> </a>
                       <figcaption> <a href="{{ texnologiya.get_absolute_url }}">{{ texnologiya.title | truncatewords:5 }}</a> </figcaption>
                       <p>{{ texnologiya.body | truncatewords:10 }}</p>
+                      <p>Ko'rilganlar soni: <i class="fa fa-eye " style="color: #255656;"></i> {% get_hit_count for texnologiya %}</p>
+                       <p>Izohlar soni: {{ texnologiya.comments.count }}</p>
                     </figure>
                   </li>
                      {% endif %}
@@ -119,8 +140,13 @@
                     {% for texnologiya in texnologiya_xabarlar %}
                         {% if forloop.counter > 1 %}
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ texnologiya.get_absolute_url }}" class="media-left"> <img alt="" src="{{ texnologiya.image.url }}"> </a>
-                      <div class="media-body"> <a href="{{ texnologiya.get_absolute_url }}" class="catg_title">{{ texnologiya.title }}</a> </div>
+                    <div class="media wow fadeInDown">
+                        <a href="{{ texnologiya.get_absolute_url }}" class="media-left"> <img alt="" src="{{ texnologiya.image.url }}"> </a>
+                      <div class="media-body">
+                          <a href="{{ texnologiya.get_absolute_url }}" class="catg_title">{{ texnologiya.title }}</a>
+                          <p>Ko'rilganlar soni: <i class="fa fa-eye " style="color: #255656;"></i> {% get_hit_count for texnologiya %}</p>
+                           <p>Izohlar soni: {{ texnologiya.comments.count }}</p>
+                      </div>
                     </div>
                   </li>
                         {% endif %}
@@ -174,6 +200,8 @@
                   <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" href="{{ sport.get_absolute_url }}"> <img src="{{ sport.image.url }}" alt=""> <span class="overlay"></span> </a>
                     <figcaption> <a href="{{ sport.get_absolute_url }}">{{ sport.title | truncatewords:5 }}</a> </figcaption>
                     <p>{{ sport.body | truncatewords:10 }}</p>
+                    <p>Ko'rilganlar soni: <i class="fa fa-eye " style="color: #255656;"></i> {% get_hit_count for sport %}</p>
+                     <p>Izohlar soni: {{ sport.comments.count }}</p>
                   </figure>
                 </li>
                    {% endif %}
@@ -185,8 +213,13 @@
                   {% for sport in sport_xabarlar %}
                     {% if forloop.counter > 1 %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{{ sport.get_absolute_url }}" class="media-left"> <img alt="" src="{{ sport.image.url }}"> </a>
-                    <div class="media-body"> <a href="{{ sport.get_absolute_url }}" class="catg_title">{{ sport.title }}</a> </div>
+                  <div class="media wow fadeInDown">
+                      <a href="{{ sport.get_absolute_url }}" class="media-left"> <img alt="" src="{{ sport.image.url }}"> </a>
+                    <div class="media-body">
+                        <a href="{{ sport.get_absolute_url }}" class="catg_title">{{ sport.title }}</a>
+                        <p>Ko'rilganlar soni: <i class="fa fa-eye " style="color: #255656;"></i> {% get_hit_count for sport %}</p>
+                         <p>Izohlar soni: {{ sport.comments.count }}</p>
+                    </div>
                   </div>
                 </li>
                     {% endif %}

@@ -1,0 +1,20 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} {% endblock title%}
+
+{% block content %}
+    <h2>Qidiruv natijalari</h2>
+    {% for yangilik in barcha_yangiliklar %}
+    <div class="card-group">
+        <div class="card">
+              <img src="{{ yangilik.image.url }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'news_detail_page' yangilik.slug %}">{{ yangilik.title }}</a></h5>
+                <p class="card-text">{{ yangilik.body | truncatewords:30 }}</p>
+                <p class="card-text"><small class="text-muted">Last updated {{ yangilik.updated_time }}</small></p>
+              </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock content %}

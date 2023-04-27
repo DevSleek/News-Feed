@@ -1,0 +1,16 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} Foydalanuvchilarni ma'lumotlarini o'zgartrish {% endblock title %}
+
+{% block content %}
+
+    <h1>Foydalanuvchilarni ma'lumotlarini o'zgartrish</h1>
+    <p> ma'lumotlarini o'zgartrish uchun quyidagi formani to'ldiring</p>
+
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+    <button type="submit">Saqlash</button>
+    </form>
+
+{% endblock content %}

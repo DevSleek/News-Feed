@@ -1,0 +1,12 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} {% endblock title %}
+
+{% block content %}
+    <h2 class="text-center">Yangi yangilik yaratmoqchimisiz</h2>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit" class="btn btn-green" style="color: whitesmoke">Yaratish</button>
+    </form><br>
+{% endblock content %}

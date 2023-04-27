@@ -1,5 +1,6 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load hitcount_tags %}
 
 {% block title %} Xorij yangiliklar {% endblock title %}
 
@@ -13,6 +14,8 @@
                 </div>
                 <div class="col-sm-8">
                     <a href="{{ news.get_absolute_url }}"><h6>{{ news.title }}</h6></a>
+                    <p>Ko'rilganlar soni: <i class="fa fa-eye " style="color: #255656;"></i> {% get_hit_count for news %}</p>
+                    <p>Izohlar soni: {{ news.comments.count }}</p>
                 </div>
             </div>
         </div>

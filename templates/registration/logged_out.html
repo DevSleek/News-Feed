@@ -1,0 +1,11 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Logout sahifasi {% endblock title %}
+
+{% block content %}
+
+    <h2>Logout</h2>
+    <h4>Siz veb-saytdan chiqdingiz. <a href="{% url 'login' %}"><span style="color: deeppink">Login</span></a></h4>
+
+{% endblock content %}
