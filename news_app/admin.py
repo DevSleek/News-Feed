@@ -5,7 +5,7 @@ from .models import News, Category, Contact, Comment
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug', 'category', 'publish_time', 'status']
-    list_filter = ['status', 'created_time', 'publish_time']
+    list_filter = ['status', 'created_time', 'publish_time', 'category']
     prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'publish_time'
     search_fields = ['title', 'body']
@@ -25,7 +25,7 @@ class ContactAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['user', 'body', 'created_time', 'active']
-    list_filter = ['active', 'created_time']
+    list_filter = ['active', 'created_time',]
     search_fields = ['user', 'body']
     actions = ['disable_comments', 'activate_comments']
 

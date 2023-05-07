@@ -1,3 +1,4 @@
+from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -6,9 +7,11 @@ from config import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('news_app.urls')),
-    path('account/', include('accounts.urls'))
-]
+] + i18n_patterns(
+    path('i18/', include('django.conf.urls.i18n')),
+    path('account/', include('accounts.urls')),
+    path('', include('news_app.urls'))
+)
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
