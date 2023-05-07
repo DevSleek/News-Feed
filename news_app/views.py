@@ -71,10 +71,10 @@ class HomePageView(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         context['news_list'] = News.published.all().order_by('-publish_time')[:5]
-        context['mahalliy_xabarlar'] = News.published.all().filter(category__name="Mahalliy").order_by("-publish_time")[:5]
-        context['xorij_xabarlar'] = News.published.all().filter(category__name="Xorij").order_by("-publish_time")[:5]
-        context['sport_xabarlar'] = News.published.all().filter(category__name="Sport").order_by("-publish_time")[:5]
-        context['texnologiya_xabarlar'] = News.published.all().filter(category__name="Texnologiya").order_by("-publish_time")[:5]
+        context['mahalliy_xabarlar'] = News.published.all().filter(category__id=4).order_by("-publish_time")[:5]
+        context['xorij_xabarlar'] = News.published.all().filter(category__id=6).order_by("-publish_time")[:5]
+        context['sport_xabarlar'] = News.published.all().filter(category__id=5).order_by("-publish_time")[:5]
+        context['texnologiya_xabarlar'] = News.published.all().filter(category__id=7).order_by("-publish_time")[:5]
         
         return context
 

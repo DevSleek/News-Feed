@@ -21,7 +21,7 @@
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="latest_post">
-          <h2><span>So'nggi yangiliklar</span></h2>
+          <h2><span>{% blocktrans %}So'nggi yangiliklar{% endblocktrans %}</span></h2>
           <div class="latest_post_container">
             <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
             <ul class="latest_postnav">
@@ -48,7 +48,7 @@
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="left_content">
           <div class="single_post_content">
-            <h2><span>Mahalliy</span></h2>
+            <h2><span>{% blocktrans %}Mahalliy{% endblocktrans %}</span></h2>
             <div class="single_post_content_left">
               <ul class="business_catgnav  wow fadeInDown">
               {% for local in mahalliy_xabarlar %}
@@ -87,7 +87,7 @@
           <div class="fashion_technology_area">
             <div class="fashion">
               <div class="single_post_content">
-                <h2><span>Xorij</span></h2>
+                <h2><span>{% blocktrans %}Xorij{% endblocktrans %}</span></h2>
                 <ul class="business_catgnav wow fadeInDown">
                   {% for xorij in xorij_xabarlar %}
                     {% if forloop.first %}
@@ -122,7 +122,7 @@
             </div>
             <div class="technology">
               <div class="single_post_content">
-                <h2><span>Texlonogiya</span></h2>
+                <h2><span>{% blocktrans %}Texlonogiya{% endblocktrans %}</span></h2>
                 <ul class="business_catgnav">
                     {% for texnologiya in texnologiya_xabarlar %}
                      {% if forloop.first %}
